@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserve Table</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Available Tables</h1>
+        {% for table in tables %}
+        <div class="card">
+            <br>
+            <hr>
+            <br>
+            <h2>Table {{ table.table_number }}</h2>
+            <p><strong>Capacity:</strong>{{ table.capacity }}</p>
+            <a href="{% url 'make_reservation' table.id %}"><button>Reserve Table</button></a>
+        </div>
+        {% empty %}
+        <p>No tables available</p>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Restaurant Menu</h1>
+        {% for item in menu_items %}
+        <div class="card">
+            <h2>{{ item.name }}</h2>
+            <br>
+            <p><strong>Category :</strong>{{ item.category }}</p>
+            <p><strong>Price :</strong>{{ item.price }}</p>
+            <p><strong>Available :</strong>{{ item.available }}</p>
+            <hr>
+            <br>
+        </div>
+        {% empty %}
+        <p>No menu items available.</p>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

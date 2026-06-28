@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Place Order</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <p><label for="customer_name">Customer Name:</label>
+                <input type="text" id="customer_name" name="customer_name">
+            </p>
+            <label><strong>Select Table</strong></label>
+            <select name="table">
+                {% for table in tables %}
+                <option value="{{table.id}}">Table {{table.table_number}}</option>
+                {% endfor %}
+            </select>
+
+            <br><br>
+            <label><strong>Select Menu Items</strong></label><br><br>
+            {% for item in menu_items %}
+            <input type="checkbox" name="items" value="{{item.name}}">
+            {{item.name}} - ₹{{item.price}}
+            <br>
+            {% endfor %}
+            <br>
+            <button type="submit" class="btn">Place Order</button>
+        </form>
+    </div>
+</body>
+
+</html>
